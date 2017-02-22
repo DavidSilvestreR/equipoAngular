@@ -1,3 +1,17 @@
+.contenedor{
+  padding: 5%;
+}
+.table1{
+  padding:0px !important;
+  background: red;
+  margin-right: 1%;
+  text-align: center;
+}
+.bartilte{
+  background:#e9edef;
+  width: 100%;
+}
+
 .dc-chart path.dc-symbol, .dc-legend g.dc-legend-item.fadeout {
   fill-opacity: 0.5;
   stroke-opacity: 0.5; }

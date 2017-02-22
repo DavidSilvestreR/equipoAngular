@@ -1,136 +1,71 @@
 <!DOCtype html>
 <html lang="en">
+<head>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+      <link rel="stylesheet" href="css/dc.css">
+      <style>
+          svg{
+            max-width: 100%;
+          }
+      </style>
+
+
+</head>
 <body>
-<div class="container">
-    <div id="parties-id"><h4>Parties Targeted</h4></div>
+<div class="contenedor">
+<div class="row">
+<div class="table1 col m5">
+    <div class="bartilte col m12">
+     <div class="col m6">Area</div>
+     <div class="col m6">reset</div>     
+     </div>
+     <div id="piedesc-id"><h4>Assassination Type</h4></div>     
+</div>
+
+<div class="table1 col m3 ">
+    <div class="bartilte col m12">
+     <div class="col m6">Area</div>
+     <div class="col m6">reset</div>     
+     </div>
     <div id="type-id"><h4>Assassination Type</h4></div>
-    <div id='table-id'><h4>Presidents</h4>
+
+</div>
+<div class="table1 col m3 ">
+    <div class="bartilte col m12">
+     <div class="col m6">Area</div>
+     <div class="col m6">reset</div>     
+     </div>
+    <div id="parties-id"><h4>Parties Targeted</h4></div>
+
+</div>
+    
+</div>
+<div class="row">
+    <div id="parties-id"><h4>Parties Targeted</h4></div>
+</div>
+<div class="row">
+</div>
+
+<div class="row">
+    <div id='table-id'><h4>hosps</h4>
         <table  class='table table-hover' >
             <thead>
             <tr class='header'>
-                <th>President</th>
-                <th>Party</th>
+                <th>hosp</th>
+                <th>status</th>
                 <th>Type</th>
             </tr>
             </thead>
         </table>
     </div>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="https://dc-js.github.io/dc.js/css/dc.css" />
+</div>
+</div>    
+    
+
     <script src="https://dc-js.github.io/dc.js/js/d3.js"></script>
     <script src="https://dc-js.github.io/dc.js/js/crossfilter.js"></script>
     <script src="https://dc-js.github.io/dc.js/js/dc.js"></script>
-    <script atype="text/javascript">
-        var assassinationData = [
-            {president: 'Abraham Lincoln', party: 'FUNCIONAL', atype: 'assassinated'},
-            {president: 'James A. Garfield', party: 'FUNCIONAL', atype: 'assassinated'},
-            {president: 'William McKinley', party: 'FUNCIONAL', atype: 'assassinated'},
-            {president: 'John F. Kennedy', party: 'FUNCIONAL', atype: 'assassinated'},
-            {president: 'Abraham Lincoln', party: 'FUNCIONAL',atype: 'attempted-assassination'},
-            {president: 'Abraham Lincoln', party: 'FUNCIONAL', atype: 'attempted-assassination'},
-            {president: 'John F. Kennedy', party: 'Democratic',atype: 'attempted-assassination'},
-            {president: 'Andrew Jackson', party: 'Democratic', atype: 'attempted-assassination'},
-            {president: 'William Howard Taft', party: 'Republican', atype: 'attempted-assassination'},
-            {president: 'Theodore Roosevelt', party: 'Republican', atype: 'attempted-assassination'},
-            {president: 'Herbert Hoover', party: 'Republican', atype: 'attempted-assassination'},
-            {president: 'Franklin D. Roosevelt', party: 'Republican', atype: 'attempted-assassination'},
-            {president: 'Franklin D. Roosevelt', party: 'Republican', atype: 'attempted-assassination'},
-            {president: 'Harry S. Truman', party: 'Democratic', atype: 'attempted-assassination'},
-            {president: 'Harry S. Truman', party: 'Democratic', atype: 'attempted-assassination'},
-            {president: 'Richard Nixon', party: 'Republican',  atype: 'attempted-assassination'},
-            {president: 'Richard Nixon', party: 'Republican',  atype: 'attempted-assassination'},
-            {president: 'Gerald Ford', party: 'Republican',atype: 'attempted-assassination'},
-            {president: 'Gerald Ford', party: 'Republican', atype: 'attempted-assassination'},
-            {president: 'Jimmy Carter', party: 'Democratic', atype: 'attempted-assassination'},
-            {president: 'Ronald Reagan', party: 'Republican',atype: 'attempted-assassination'},
-            {president: 'George H.W. Bush', party: 'Republican',atype: 'attempted-assassination'},
-            {president: 'Bill Clinton', party: 'Democratic',atype: 'attempted-assassination'},
-            {president: 'Bill Clinton', party: 'Democratic',atype: 'attempted-assassination'},
-            {president: 'Bill Clinton', party: 'Democratic',atype: 'attempted-assassination'},
-            {president: 'Bill Clinton', party: 'Democratic',atype: 'attempted-assassination'},
-            {president: 'George W. Bush', party: 'Republican', atype: 'attempted-assassination'},
-            {president: 'George W. Bush', party: 'Republican', atype: 'attempted-assassination'},
-            {president: 'Barack Obama', party: 'Democratic', atype: 'attempted-assassination'},
-            {president: 'Barack Obama', party: 'Democratic', atype: 'attempted-assassination'},
-            {president: 'Barack Obama', party: 'Democratic', atype: 'attempted-assassination'},
-            {president: 'Zachary Taylor', party: 'Democratic', atype: 'rumored-assassination'},
-            {president: 'Warren G. Harding', party: 'Republican', atype: 'rumored-assassination'},
-        ];
+    <script src="js/data.js"></script>
+    <script atype="text/javascript" src="js/table.js"></script>
 
-        // DATA, DIMENSIONS AND GROUPS
-        var ndx = crossfilter(assassinationData);
-        partyDimension = ndx.dimension(function (d) {
-            return d.party;
-        })
-        partySumGroup = partyDimension.group()
-        atypeDimension = ndx.dimension(function (d) {
-            return d.atype;
-        })
-        var atypeGroupCount = atypeDimension.group()
-            .reduceCount(function (d) {
-                return d.atype;
-            })
-        modelDimension = ndx.dimension(function (d) {
-            return d.model;
-        })
-        var modelGroupCount = modelDimension.group()
-            .reduceCount(function (d) {
-                return d.model;
-            })
-
-        //        //        // PRESIDENTIAL PARTIES INVOLVED IN ASSASSINATIONS (AND ATTEMPTS)        //        //
-        var chart1 = dc.pieChart("#parties-id");
-        chart1            .width(384)
-            .height(240)
-            .slicesCap(4)
-            .innerRadius(25)
-            .dimension(partyDimension)
-            .group(partySumGroup)
-            .renderLabel(true)
-            .legend(dc.legend())
-            .title(function (d) {
-                return d.value;
-            });
-
-        //        //        // ASSASSINATION TYPES        //        //
-
-
-        var chart2 = dc.rowChart("#type-id");
-        chart2
-            .width(480)
-            .x(d3.scale.linear().range([6,20]))
-            .margins({top: 5, left: 10, right: 10, bottom: 20})
-            .colors(d3.scale.category10())
-            .dimension(atypeDimension)
-            .group(atypeGroupCount)
-            .elasticX(true)
-            .xAxis().ticks(5);
-
-        //        //        // TABLE OF PRESIDENT, THEIR PARTIES AND ASSASSINATION TYPES        //        //
-        var table1 = dc.dataTable("#table-id");
-        table1            .width(250).height(800)
-            .dimension(partyDimension)
-            .group(function (d) {
-                return ' '            })
-            .size(100)
-            .columns([
-
-                function (d) {
-                    return d.president;
-                },
-                function (d) {
-                    return d.party;
-                },
-                function (d) {
-                    return d.atype;
-                },
-
-            ])
-
-        dc.renderAll();
-
-
-    </script>
-
-</div>
 </body>
